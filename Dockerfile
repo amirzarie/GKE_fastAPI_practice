@@ -4,8 +4,10 @@ WORKDIR /app
 
 COPY . /app
 
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-EXPOSE 8000
+EXPOSE 80
 
-CMD ["uvicorn", "main:app", "--reload", "--port=8000", "--host=0.0.0.0"]
+ENV MY_VARIABLE my_value
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
